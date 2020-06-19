@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product">
+	<select id="all" parameterType="productDTO" resultType="productDTO">
+		select * from product
+	</select>
+	
+	<select id="detail" parameterType="productDTO" resultType="productDTO">
+		select * from product where pid = #{pid}
+	</select>
+
+	<insert id="add" parameterType="productDTO">
+		insert into product (pname, price , img) values( #{pname} , #{price} , #{img})
+	</insert>
+	
+	<delete id="del" parameterType="productDTO">
+		delete from product where pid= #{pid}
+	</delete>
+
+</mapper>

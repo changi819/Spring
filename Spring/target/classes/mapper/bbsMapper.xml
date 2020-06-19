@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bbs">
+
+	<select id="select_all" parameterType="bbsDTO" resultType="bbsDTO">
+		select * from bbs
+	</select>
+
+	<select id="select_title" parameterType="bbsDTO" resultType="bbsDTO">
+		select * from bbs where bbsnum = #{bbsnum}
+	</select>
+
+	<insert id="insert_bbs" parameterType="bbsDTO">
+		insert into bbs (title, content, writer, bbsdate) values (#{title}, #{content}, #{writer}, #{bbsdate})
+	</insert>
+
+	<update id="update_hits" parameterType="bbsDTO">
+		update bbs set hits = #{hits}+1 where bbsnum = #{bbsnum}
+	</update>
+	
+	<update id="update_bbs" parameterType="bbsDTO">
+		update bbs set title = #{title}, content = #{content}, bbsdate = #{bbsdate} where bbsnum = #{bbsnum}
+	</update>
+	
+	<delete id="delete_bbs" parameterType="bbsDTO">
+		delete from bbs where bbsnum = #{bbsnum}
+	</delete>
+	
+</mapper>

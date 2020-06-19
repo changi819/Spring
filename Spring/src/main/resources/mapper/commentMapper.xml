@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="comment">
+
+	
+	<select id="list" parameterType="hashMap" resultType="commentDTO">
+		select content,name,comdate,bbsnum from(select content,name,comdate,bbsnum from comment order by comdate desc)
+		 comment where bbsnum = #{commentDTO.bbsnum} limit #{paging.startList},#{paging.listSize};
+	</select>
+	
+	<insert id="add" parameterType="commentDTO">
+		insert into comment(content, name, bbsnum) values ( #{content}, #{name} , #{bbsnum} )
+	</insert>
+	
+	<delete id="delete" parameterType="commentDTO">
+		delete from comment where comment_num= #{comment_num}
+	</delete>
+	
+	<delete id="delbbs" parameterType="commentDTO">
+		delete from comment where bbsnum = #{bbsnum}
+	</delete>
+	
+	<select id="pageAll" resultType="int">
+		select count(*) from comment
+	</select>
+</mapper>
